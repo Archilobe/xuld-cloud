@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.evax.admin.domain.mapper.SysMenuMapper">
+    <select id="getMenuTreeByUserId" resultType="com.evax.api.admin.model.SysMenuModel">
+        select  m.* from sys_menu m
+        inner join sys_role_menu srm on srm.menu_id =  m.id and srm.del_flag = '0'
+        inner join sys_user_role sur on sur.role_id = srm.role_id and sur.del_flag = '0'
+        <where>
+            <if test="userId != null">and sur.user_id = #{userId}</if>
+            <if test="menuType != null and menuType!= ''">and m.type = #{menuType}</if>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,29 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.1.51:8848
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+      routes:
+        - id: admin-server
+          uri: lb://admin-server
+          predicates:
+            - Path=/admin-server/**
+        - id: auth-server
+          uri: lb://auth-server
+          predicates:
+            - Path=/auth-server/**
+  ## redis配置
+  redis:
+    database: 0
+    host: 192.168.1.51
+    port: 6379
+    password: 123456
+
+logging:
+  level:
+    root: info
+
