@@ -1,0 +1,16 @@
+server:
+  port: 10000
+spring:
+  application:
+    name: gateway-server
+  profiles:
+    active: dev
+
+#需要进行过滤的白名单
+allow:
+  filter:
+    paths:
+      - /*/v2/api-docs
+      - /auth-server/login
+      - /auth-server/logout
+      - /admin-server/item
